@@ -2,10 +2,11 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>חמישה ימים בדולומיטים</title>
 <meta name="description" content="מקומות, מסלולים והזמנות לחמישה ימים בדולומיטים מבסיס בסיוזי, מסודרים לפי נושא ולפי תחזית מזג האוויר של דרום טירול.">
-<meta name="theme-color" content="#27493C">
+<meta name="theme-color" content="#0C0F11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#E7EBEC" media="(prefers-color-scheme: light)">
 <meta property="og:title" content="חמישה ימים בדולומיטים">
 <meta property="og:description" content="מקומות, מסלולים והזמנות, מסודרים לפי נושא ולפי מזג האוויר.">
 <meta property="og:image" content="img/seceda.jpg">
@@ -13,199 +14,417 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏔️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@300;400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
+/* ============ tokens ============ */
 :root{
   color-scheme:light;
-  --ground:#EDF0F1;--panel:#FFFFFF;--panel-2:#F5F7F8;
-  --ink:#15191C;--ink-2:#3D464B;--stone:#6E777C;
-  --hair:#D6DCDE;--hair-2:#E6EBEC;
-  --pine:#27493C;--pine-soft:#E2EBE6;
-  --glacial:#1F6E7E;--glacial-soft:#DDEDEF;
-  --alpenglow:#C2553A;--alpenglow-soft:#F6E4DE;
-  --storm:#8A5A12;--storm-soft:#F6EBD7;
+  --ground:#E7EBEC;
+  --panel:#FFFFFF;
+  --panel-2:#F1F4F5;
+  --ink:#12161A;
+  --ink-2:#414B51;
+  --stone:#6B767C;
+  --hair:#D2D9DB;
+  --hair-2:#E2E8E9;
+  --rose:#C6564C;
+  --rose-soft:#F7E3DF;
+  --pine:#1F4A3D;
+  --pine-soft:#DFEAE5;
+  --glacial:#14707F;
+  --glacial-soft:#D9EDF0;
+  --storm:#8A5A12;
+  --storm-soft:#F6EBD7;
+  --scrim:rgba(10,14,16,.42);
+  --scrim-2:rgba(10,14,16,.86);
+  --bar:rgba(231,235,236,.86);
+  --shadow:0 1px 2px rgba(18,22,26,.05),0 8px 28px -14px rgba(18,22,26,.22);
+
   --f-display:"Frank Ruhl Libre",Georgia,"Times New Roman",serif;
   --f-body:"Assistant","Segoe UI",Arial,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
   --w:1080px;
+  --pad:20px;
+  --bar-h:52px;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --ground:#111417;--panel:#1A1F23;--panel-2:#20262A;
-    --ink:#E9EDEE;--ink-2:#B9C2C6;--stone:#8B959A;
-    --hair:#2C343A;--hair-2:#242B30;
-    --pine:#7FBFA4;--pine-soft:#1C2E27;
-    --glacial:#5FB6C6;--glacial-soft:#132A2F;
-    --alpenglow:#E58B6E;--alpenglow-soft:#2E1D18;
-    --storm:#D9A44E;--storm-soft:#2A2115;
+    --ground:#0C0F11;--panel:#14181B;--panel-2:#1A2024;
+    --ink:#EDF0F1;--ink-2:#B4BEC3;--stone:#828D93;
+    --hair:#242B30;--hair-2:#1D2428;
+    --rose:#F09277;--rose-soft:#2B1A16;
+    --pine:#6FBFA0;--pine-soft:#152A23;
+    --glacial:#56B6C7;--glacial-soft:#0F272C;
+    --storm:#D9A44E;--storm-soft:#261E13;
+    --scrim:rgba(4,6,7,.46);--scrim-2:rgba(4,6,7,.9);
+    --bar:rgba(12,15,17,.84);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -16px rgba(0,0,0,.8);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --ground:#111417;--panel:#1A1F23;--panel-2:#20262A;
-  --ink:#E9EDEE;--ink-2:#B9C2C6;--stone:#8B959A;
-  --hair:#2C343A;--hair-2:#242B30;
-  --pine:#7FBFA4;--pine-soft:#1C2E27;
-  --glacial:#5FB6C6;--glacial-soft:#132A2F;
-  --alpenglow:#E58B6E;--alpenglow-soft:#2E1D18;
-  --storm:#D9A44E;--storm-soft:#2A2115;
+  --ground:#0C0F11;--panel:#14181B;--panel-2:#1A2024;
+  --ink:#EDF0F1;--ink-2:#B4BEC3;--stone:#828D93;
+  --hair:#242B30;--hair-2:#1D2428;
+  --rose:#F09277;--rose-soft:#2B1A16;
+  --pine:#6FBFA0;--pine-soft:#152A23;
+  --glacial:#56B6C7;--glacial-soft:#0F272C;
+  --storm:#D9A44E;--storm-soft:#261E13;
+  --scrim:rgba(4,6,7,.46);--scrim-2:rgba(4,6,7,.9);
+  --bar:rgba(12,15,17,.84);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -16px rgba(0,0,0,.8);
 }
+
+/* ============ base ============ */
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-body);
-  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;line-height:1.7;font-weight:300;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
 img{max-width:100%;display:block}
-.wrap{max-width:var(--w);margin:0 auto;padding:0 20px 96px}
+a{color:var(--glacial);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--w);margin:0 auto;padding-inline:var(--pad)}
 
-/* hero */
-.hero{position:relative;margin-bottom:0}
-.hero img{width:100%;height:clamp(240px,46vw,440px);object-fit:cover;object-position:center 58%}
-.hero-cap{
-  font-family:var(--f-mono);font-size:10.5px;color:var(--stone);
-  padding:6px 20px 0;max-width:var(--w);margin:0 auto;text-align:left;
+/* full-bleed helper */
+.bleed{width:100vw;margin-inline:calc(50% - 50vw)}
+
+/* ============ hero ============ */
+.hero{position:relative;isolation:isolate}
+.hero img{
+  width:100vw;height:min(78svh,620px);object-fit:cover;object-position:50% 58%;
 }
-.mast{padding:34px 0 30px}
-.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--stone);margin:0 0 16px;display:flex;gap:10px;flex-wrap:wrap}
-.eyebrow span{color:var(--pine)}
-h1{font-family:var(--f-display);font-weight:900;font-size:clamp(38px,7vw,60px);
-  line-height:1.08;margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
-.dek{font-size:19px;color:var(--ink-2);max-width:62ch;margin:0;font-weight:300}
-.mast-meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px;padding-top:20px;
-  border-top:1px solid var(--hair);font-family:var(--f-mono);font-size:12.5px;color:var(--stone)}
-.mast-meta b{color:var(--ink-2);font-weight:500}
-
-h2{font-family:var(--f-display);font-weight:700;font-size:27px;margin:60px 0 6px;letter-spacing:-.01em}
-.sub{color:var(--stone);font-size:15px;margin:0 0 24px;font-weight:300;max-width:66ch}
-a{color:var(--glacial);text-decoration:none;border-bottom:1px solid rgba(31,110,126,.32)}
-a:hover{border-bottom-color:currentColor}
-a:focus-visible{outline:2px solid var(--glacial);outline-offset:3px;border-radius:2px}
-
-/* bookings */
-.board{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:3px;overflow:hidden}
-.bk{background:var(--panel);padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:4px 16px;align-items:baseline}
-.bk-n{font-family:var(--f-mono);font-size:12px;color:var(--alpenglow);font-weight:600}
-.bk-t{font-weight:700;font-size:16.5px;grid-column:2}
-.bk-p{font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap;grid-column:3;grid-row:1}
-.bk-d{grid-column:2 / -1;font-size:14.5px;color:var(--ink-2);line-height:1.55;font-weight:300;margin:0}
-@media (max-width:560px){.bk{grid-template-columns:auto 1fr}.bk-p{grid-column:1 / -1;grid-row:auto}}
-
-/* cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-.card{background:var(--panel);border:1px solid var(--hair);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
-.card figure{margin:0;position:relative}
-.card figure img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--panel-2)}
-.card figcaption{
-  font-family:var(--f-mono);font-size:10px;color:var(--stone);
-  padding:5px 16px 0;text-align:left;line-height:1.4;
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,var(--ground) 2%,rgba(10,14,16,.75) 34%,rgba(10,14,16,.15) 72%,rgba(10,14,16,.35));
 }
-.card figcaption a{color:var(--stone);border-bottom-color:rgba(110,119,124,.35)}
-.card-body{padding:12px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
-.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.card h3{font-family:var(--f-display);font-weight:700;font-size:21px;margin:0;letter-spacing:-.01em}
-.pin{font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
-  padding:3px 7px;border-radius:2px;white-space:nowrap;background:var(--glacial-soft);color:var(--glacial)}
-.pin.add{background:var(--pine-soft);color:var(--pine)}
-.card p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.6;font-weight:300}
-.card p em{font-style:normal;color:var(--ink);font-weight:600}
-.facts{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:auto;padding-top:8px;
-  font-family:var(--f-mono);font-size:11.5px;color:var(--stone);font-variant-numeric:tabular-nums}
-.facts b{color:var(--ink-2);font-weight:500}
-.warn{font-size:13.5px;line-height:1.55;font-weight:600;background:var(--storm-soft);color:var(--storm);
-  padding:9px 11px;border-radius:2px;margin:0}
+.hero-in{
+  position:absolute;inset-inline:0;bottom:0;z-index:2;
+  max-width:var(--w);margin:0 auto;padding:0 var(--pad) 34px;
+}
+.kicker{
+  font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:#EBD9CF;margin:0 0 14px;
+  display:flex;gap:9px;flex-wrap:wrap;align-items:center;
+}
+.kicker i{font-style:normal;color:#E8A184}
+h1{
+  font-family:var(--f-display);font-weight:900;
+  font-size:clamp(42px,11.5vw,86px);line-height:.98;letter-spacing:-.025em;
+  margin:0;color:#fff;text-wrap:balance;
+  text-shadow:0 2px 30px rgba(0,0,0,.4);
+}
+.hero-sub{
+  margin:14px 0 0;color:rgba(255,255,255,.9);font-size:16.5px;
+  max-width:44ch;line-height:1.55;font-weight:300;
+}
+.hero-cred{
+  position:absolute;bottom:6px;inset-inline-start:var(--pad);z-index:3;
+  font-family:var(--f-mono);font-size:9.5px;color:rgba(255,255,255,.45);letter-spacing:.03em;
+}
+
+/* ============ sticky nav ============ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:var(--bar);
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid var(--hair);
+}
+.nav-scroll{
+  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+  max-width:var(--w);margin:0 auto;padding:0 calc(var(--pad) - 8px);
+  scroll-snap-type:x proximity;
+}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav a{
+  flex:0 0 auto;scroll-snap-align:start;
+  font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.06em;
+  color:var(--stone);border:0;padding:0 10px;height:var(--bar-h);
+  display:flex;align-items:center;white-space:nowrap;
+  border-bottom:2px solid transparent;transition:color .16s;
+}
+.nav a:hover{color:var(--ink)}
+.nav a.on{color:var(--rose);border-bottom-color:var(--rose)}
+
+/* ============ sections ============ */
+section{scroll-margin-top:calc(var(--bar-h) + 8px)}
+.sec-head{padding:60px 0 26px}
+.sec-num{
+  font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--rose);margin:0 0 10px;
+}
+h2{
+  font-family:var(--f-display);font-weight:900;letter-spacing:-.02em;
+  font-size:clamp(30px,7.5vw,44px);line-height:1.06;margin:0;text-wrap:balance;
+}
+.sec-head p{
+  margin:12px 0 0;color:var(--ink-2);font-size:16.5px;max-width:58ch;line-height:1.6;
+}
+
+/* ============ booking checklist ============ */
+.checks{
+  background:var(--panel);border:1px solid var(--hair);border-radius:14px;
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.chk{display:block;border-bottom:1px solid var(--hair-2);cursor:pointer;position:relative}
+.chk:last-child{border-bottom:0}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.chk-in{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:17px 18px;align-items:start;transition:background .15s}
+.chk:active .chk-in{background:var(--panel-2)}
+.box{
+  width:23px;height:23px;border-radius:7px;border:1.5px solid var(--hair);
+  grid-row:1 / span 3;margin-top:3px;flex:0 0 auto;position:relative;
+  transition:background .16s,border-color .16s;
+}
+.box::after{
+  content:"";position:absolute;inset:0;
+  background:no-repeat center/13px 13px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 8.5l3.5 3.5 7.5-8'/%3E%3C/svg%3E");
+  opacity:0;transform:scale(.6);transition:opacity .16s,transform .16s;
+}
+.chk input:checked ~ .chk-in .box{background:var(--pine);border-color:var(--pine)}
+.chk input:checked ~ .chk-in .box::after{opacity:1;transform:scale(1)}
+.chk input:checked ~ .chk-in .chk-t{color:var(--stone);text-decoration:line-through;text-decoration-thickness:1px}
+.chk input:focus-visible ~ .chk-in .box{outline:2px solid var(--rose);outline-offset:3px}
+.chk-t{font-weight:700;font-size:17px;color:var(--ink);line-height:1.35;transition:color .16s}
+.chk-p{
+  font-family:var(--f-mono);font-size:12px;color:var(--rose);font-weight:600;
+  grid-column:2;margin:2px 0 0;
+}
+.chk-d{grid-column:2;margin:6px 0 0;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.chk-d a{color:var(--glacial)}
+.chk-note{
+  margin:12px 2px 0;font-family:var(--f-mono);font-size:11.5px;color:var(--stone);
+}
+
+/* ============ place entries ============ */
+.place{
+  margin-top:22px;background:var(--panel);border:1px solid var(--hair);
+  border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+}
+.place figure{margin:0;position:relative;background:var(--panel-2)}
+.place figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.place figcaption{
+  position:absolute;inset-inline-start:0;bottom:0;
+  font-family:var(--f-mono);font-size:9.5px;color:rgba(255,255,255,.62);
+  padding:16px 12px 7px;letter-spacing:.02em;
+  background:linear-gradient(to top,rgba(0,0,0,.5),transparent);
+  width:100%;
+}
+.place figcaption a{color:rgba(255,255,255,.62);border-bottom-color:rgba(255,255,255,.3)}
+.place-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:12px}
+.place-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.place h3{font-family:var(--f-display);font-weight:900;font-size:26px;margin:0;letter-spacing:-.02em;line-height:1.15}
+.tag{
+  font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border-radius:99px;white-space:nowrap;
+  background:var(--glacial-soft);color:var(--glacial);
+}
+.tag.add{background:var(--pine-soft);color:var(--pine)}
+.tag.out{background:var(--rose-soft);color:var(--rose)}
+.place p{margin:0;font-size:16px;color:var(--ink-2);line-height:1.68}
+.place p em{font-style:normal;color:var(--ink);font-weight:600}
+.facts{
+  display:flex;flex-wrap:wrap;gap:8px;padding-top:4px;
+}
+.facts span{
+  font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;
+  background:var(--panel-2);border-radius:99px;padding:5px 11px;white-space:nowrap;
+}
+.facts b{color:var(--ink);font-weight:600}
+.warn{
+  font-size:14.5px;line-height:1.55;font-weight:600;
+  background:var(--storm-soft);color:var(--storm);
+  padding:12px 14px;border-radius:10px;margin:0;
+}
 .warn.cool{background:var(--glacial-soft);color:var(--glacial)}
-.warn.set{background:var(--alpenglow-soft);color:var(--alpenglow)}
+.warn.set{background:var(--rose-soft);color:var(--rose)}
 
-/* trails */
-.trails{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:3px;overflow:hidden}
-.tr{background:var(--panel);padding:15px 18px;display:grid;grid-template-columns:1fr auto;gap:4px 18px;align-items:baseline}
-.tr-n{font-weight:700;font-size:16.5px}
-.tr-g{font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
-  padding:3px 8px;border-radius:2px;white-space:nowrap;background:var(--pine-soft);color:var(--pine)}
-.tr-g.mid{background:var(--storm-soft);color:var(--storm)}
-.tr-g.hard{background:var(--alpenglow-soft);color:var(--alpenglow)}
-.tr-d{grid-column:1 / -1;font-size:14.5px;color:var(--ink-2);font-weight:300;line-height:1.55;margin:0}
-.tr-f{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--f-mono);
-  font-size:11.5px;color:var(--stone);font-variant-numeric:tabular-nums}
+/* desktop: alternate photo / text */
+@media (min-width:820px){
+  .place{display:grid;grid-template-columns:1.05fr 1fr;align-items:stretch}
+  .place figure{height:100%}
+  .place figure img{height:100%;aspect-ratio:auto;min-height:330px}
+  .place:nth-child(even) figure{order:2}
+  .place-body{padding:30px 32px;justify-content:center}
+  .place h3{font-size:30px}
+}
 
-/* weather */
-.wx-rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;
-  background:var(--hair);border:1px solid var(--hair);border-radius:3px;overflow:hidden}
-.wx-day{background:var(--panel);padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px}
-.wx-d{font-family:var(--f-mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--stone)}
-.wx-h{font-family:var(--f-display);font-weight:700;font-size:17px;margin:0;line-height:1.25}
+/* ============ trails ============ */
+.trails{display:flex;flex-direction:column;gap:10px}
+.tr{
+  background:var(--panel);border:1px solid var(--hair);border-radius:12px;
+  padding:16px 18px;display:flex;flex-direction:column;gap:7px;
+}
+.tr-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tr-n{font-weight:700;font-size:16.5px;line-height:1.35}
+.grade{
+  font-family:var(--f-mono);font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border-radius:99px;white-space:nowrap;background:var(--pine-soft);color:var(--pine);
+}
+.grade.mid{background:var(--storm-soft);color:var(--storm)}
+.grade.hard{background:var(--rose-soft);color:var(--rose)}
+.tr p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.6}
+
+/* ============ weather ============ */
+.wx{
+  display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;
+  padding-bottom:6px;scroll-snap-type:x mandatory;
+}
+.wx::-webkit-scrollbar{display:none}
+.wx-day{
+  flex:0 0 clamp(210px,72vw,250px);scroll-snap-align:start;
+  background:var(--panel);border:1px solid var(--hair);border-radius:14px;
+  padding:18px;display:flex;flex-direction:column;gap:9px;
+}
+.wx-d{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+.wx-h{font-family:var(--f-display);font-weight:900;font-size:23px;margin:0;line-height:1.1;letter-spacing:-.02em}
 .wx-t{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.wx-p{margin:0;font-size:14px;color:var(--ink-2);font-weight:300;line-height:1.5}
-.wx-plan{margin-top:auto;padding-top:9px;border-top:1px solid var(--hair-2);font-size:13.5px;font-weight:600;color:var(--pine)}
+.wx-day p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.wx-plan{
+  margin-top:auto;padding-top:11px;border-top:1px solid var(--hair-2);
+  font-size:14px;font-weight:700;color:var(--pine);line-height:1.4;
+}
 .wx-day.wet .wx-plan{color:var(--glacial)}
 .wx-day.mix .wx-plan{color:var(--storm)}
+@media (min-width:900px){
+  .wx{display:grid;grid-template-columns:repeat(5,1fr);overflow:visible}
+  .wx-day{flex:auto}
+}
 
-.cut{border-top:1px solid var(--hair)}
-.cut > div{padding:18px 0;border-bottom:1px solid var(--hair-2)}
-.cut h3{font-family:var(--f-body);font-size:16.5px;font-weight:700;margin:0 0 4px}
-.cut p{margin:0;font-size:15px;color:var(--ink-2);font-weight:300;line-height:1.6;max-width:68ch}
+/* ============ numbers ============ */
+.ref{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ref section{
+  background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:20px 20px 22px;
+}
+.ref h3{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--rose);margin:0 0 14px;font-weight:600;
+}
+.ref dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:9px 14px;align-items:baseline}
+.ref dt{font-size:15px;color:var(--ink-2)}
+.ref dd{margin:0;font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
+  color:var(--ink);font-weight:600;white-space:nowrap}
 
-.ref{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1px;
-  background:var(--hair);border:1px solid var(--hair);border-radius:3px;overflow:hidden}
-.ref section{background:var(--panel);padding:18px 20px}
-.ref h3{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--stone);margin:0 0 12px;font-weight:600}
-.ref dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:7px 14px;align-items:baseline}
-.ref dt{font-size:14.5px;color:var(--ink-2);font-weight:300}
-.ref dd{margin:0;font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums;
-  color:var(--ink);font-weight:500;white-space:nowrap}
+/* ============ cut + credits + foot ============ */
+.cut{display:flex;flex-direction:column;gap:12px}
+.cut div{background:var(--panel);border:1px solid var(--hair);border-radius:12px;padding:18px 20px}
+.cut h3{font-family:var(--f-display);font-size:20px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em}
+.cut p{margin:0;font-size:15.5px;color:var(--ink-2);line-height:1.65}
 
-.credits{font-family:var(--f-mono);font-size:11.5px;color:var(--stone);line-height:1.9;
-  columns:2;column-gap:32px}
-.credits a{color:var(--stone);border-bottom-color:rgba(110,119,124,.3)}
-@media (max-width:640px){.credits{columns:1}}
-.foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--hair);
-  font-size:13.5px;color:var(--stone);font-weight:300;line-height:1.7}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+details.credits{
+  margin-top:26px;background:var(--panel);border:1px solid var(--hair);border-radius:12px;padding:0;
+}
+details.credits summary{
+  cursor:pointer;padding:16px 20px;font-family:var(--f-mono);font-size:12px;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);
+  list-style:none;
+}
+details.credits summary::-webkit-details-marker{display:none}
+details.credits summary::after{content:" ↓";color:var(--rose)}
+details.credits[open] summary::after{content:" ↑"}
+.credit-list{padding:0 20px 18px;display:grid;gap:7px;
+  font-family:var(--f-mono);font-size:11.5px;color:var(--stone);line-height:1.5}
+.credit-list a{color:var(--stone);border-bottom-color:rgba(130,141,147,.35)}
+@media (min-width:760px){.credit-list{grid-template-columns:1fr 1fr;gap:7px 28px}}
+
+.foot{
+  margin:44px 0 0;padding:24px 0 0;border-top:1px solid var(--hair);
+  font-size:14px;color:var(--stone);line-height:1.75;
+}
+.pad-b{padding-bottom:80px}
+
+/* ============ to-top ============ */
+.top{
+  position:fixed;inset-inline-end:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--hair);
+  background:var(--bar);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  color:var(--ink);font-size:19px;line-height:1;cursor:pointer;
+  display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .22s;
+  box-shadow:var(--shadow);
+}
+.top.show{opacity:1;pointer-events:auto}
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <img src="img/seceda.jpg" alt="קירות האודלה בזריחה, מרכס סצ׳דה" width="1280" height="854">
-</div>
-<p class="hero-cap">Odles da Seceda · Wolfgang Moroder · CC BY-SA 3.0</p>
-
-<div class="wrap">
-
-  <header class="mast">
-    <p class="eyebrow">סיוזי־זייס · דרום טירול <span>·</span> 6 עד 10 בספטמבר 2026</p>
-    <h1>חמישה ימים בדולומיטים</h1>
-    <p class="dek">כל המקומות, מסודרים לפי סוג ולא לפי ימים. התחזית בתחתית העמוד מציעה מה לעשות מתי, כי בספטמבר מזג האוויר קובע את הסדר ולא ההפך.</p>
-    <div class="mast-meta">
-      <span>בסיס <b>סיוזי</b></span><span>עדי ושקד</span><span>ברכב</span><span>הערבים <b>פתוחים</b></span>
-    </div>
-  </header>
-
-  <h2>להזמין לפני שיוצאים</h2>
-  <p class="sub">שלושה מקומות לא מכניסים בלי הזמנה מראש, ואחד מומלץ. זה החלק היחיד שלא סובל דחייה.</p>
-  <div class="board">
-    <div class="bk"><span class="bk-n">חובה</span><span class="bk-t">סצ׳דה, חלון של 30 דקות</span><span class="bk-p">74 € לאדם</span>
-      <p class="bk-d">מקיץ 2026 העלייה מחולקת לחלונות זמן שנקבעים מראש ב־<a href="https://www.seceda.it/en/summer">seceda.it</a>. בלשונם: הכרטיסים אינם ניתנים להחזר או לשינוי ותקפים רק לחלון שנבחר. כרטיס Dolomiti Super Summer לא תקף כאן.</p></div>
-    <div class="bk"><span class="bk-n">חובה</span><span class="bk-t">כביש האגרה לתרה צ׳ימה</span><span class="bk-p">40 € לרכב</span>
-      <p class="bk-d">הזמנה מקוונת חובה ב־<a href="https://auronzo.info/en/parking-tre-cime-di-lavaredo/">auronzo.info</a>, חלון של 12 שעות. את מספר הרישוי אפשר להוסיף יום לפני, מה שמסתדר עם רכב שכור.</p></div>
-    <div class="bk"><span class="bk-n">חובה</span><span class="bk-t">לאגו די בראייס, אישור מעבר</span><span class="bk-p">44 €</span>
-      <p class="bk-d">מ־01.07 עד 15.09.2026 הכניסה לעמק בין 09:00 ל־16:00 רק עם הזמנה מקוונת. הכרטיס המשולב ב־<a href="https://www.prags.bz/en">prags.bz</a> כולל מעבר, חניה ו־22 € חזרה כשובר, והשובר ניתן רק בהזמנה מראש.</p></div>
-    <div class="bk"><span class="bk-n">מומלץ</span><span class="bk-t">QC Terme Dolomiti</span><span class="bk-p">מ־44 €</span>
-      <p class="bk-d">הזמנה ב־<a href="https://www.qcterme.com/book">qcterme.com/book</a>, אשראי כערבות והתשלום במקום. פתוח ראשון עד חמישי 09:00 עד 22:00, ואין כניסה מתחת לגיל 14.</p></div>
-    <div class="bk"><span class="bk-n">לא צריך</span><span class="bk-t">אלפה די סיוזי</span><span class="bk-p">ברכבל</span>
-      <p class="bk-d">הזמנת חניה נדרשת רק למי שעולה ברכב. אתם ישנים בסיוזי והתחנה התחתית בכפר.</p></div>
+  <img src="img/seceda.jpg" alt="קירות האודלה בזריחה מרכס סצ׳דה" width="1280" height="854" fetchpriority="high">
+  <span class="hero-cred">Wolfgang Moroder · CC BY-SA 3.0</span>
+  <div class="hero-in">
+    <p class="kicker">סיוזי־זייס · דרום טירול <i>·</i> 6—10 בספטמבר 2026</p>
+    <h1>חמישה ימים<br>בדולומיטים</h1>
+    <p class="hero-sub">כל המקומות לפי סוג, ולא לפי ימים. התחזית למטה מציעה מה לעשות מתי.</p>
   </div>
+</div>
 
-  <h2>פסגות ורכבלים</h2>
-  <p class="sub">ארבעת המקומות שבהם עולים גבוה ומסתכלים. שלושה מהם דורשים כרטיס או אגרה.</p>
-  <div class="grid">
+<nav class="nav" aria-label="ניווט בעמוד">
+  <div class="nav-scroll">
+    <a href="#bookings">הזמנות</a>
+    <a href="#peaks">פסגות</a>
+    <a href="#lakes">אגמים</a>
+    <a href="#trails">מסלולים</a>
+    <a href="#sunsets">שקיעות</a>
+    <a href="#towns">כפרים</a>
+    <a href="#weather">מזג אוויר</a>
+    <a href="#numbers">מספרים</a>
+  </div>
+</nav>
 
-    <article class="card">
+<main class="wrap pad-b">
+
+  <!-- ========== BOOKINGS ========== -->
+  <section id="bookings">
+    <div class="sec-head">
+      <p class="sec-num">קודם כל</p>
+      <h2>להזמין לפני שיוצאים</h2>
+      <p>שלושה מקומות לא מכניסים בלי הזמנה מראש, ואחד מומלץ. סמנו כשעשיתם, זה נשמר בטלפון.</p>
+    </div>
+    <div class="checks">
+      <label class="chk"><input type="checkbox" data-k="seceda">
+        <span class="chk-in"><span class="box"></span>
+          <span class="chk-t">סצ׳דה, חלון של 30 דקות</span>
+          <span class="chk-p">74 € לאדם · חובה</span>
+          <span class="chk-d">מקיץ 2026 העלייה מחולקת לחלונות זמן שנקבעים מראש ב־<a href="https://www.seceda.it/en/summer">seceda.it</a>. בלשונם: הכרטיסים אינם ניתנים להחזר או לשינוי ותקפים רק לחלון שנבחר. כרטיס Dolomiti Super Summer לא תקף כאן.</span>
+        </span></label>
+      <label class="chk"><input type="checkbox" data-k="trecime">
+        <span class="chk-in"><span class="box"></span>
+          <span class="chk-t">כביש האגרה לתרה צ׳ימה</span>
+          <span class="chk-p">40 € לרכב · חובה</span>
+          <span class="chk-d">הזמנה מקוונת חובה ב־<a href="https://auronzo.info/en/parking-tre-cime-di-lavaredo/">auronzo.info</a>, חלון של 12 שעות. את מספר הרישוי אפשר להוסיף יום לפני, מה שמסתדר עם רכב שכור.</span>
+        </span></label>
+      <label class="chk"><input type="checkbox" data-k="braies">
+        <span class="chk-in"><span class="box"></span>
+          <span class="chk-t">לאגו די בראייס, אישור מעבר</span>
+          <span class="chk-p">44 € · חובה</span>
+          <span class="chk-d">מ־01.07 עד 15.09.2026 הכניסה לעמק בין 09:00 ל־16:00 רק עם הזמנה. הכרטיס המשולב ב־<a href="https://www.prags.bz/en">prags.bz</a> כולל מעבר, חניה ו־22 € חזרה כשובר, והשובר ניתן רק בהזמנה מראש.</span>
+        </span></label>
+      <label class="chk"><input type="checkbox" data-k="qc">
+        <span class="chk-in"><span class="box"></span>
+          <span class="chk-t">QC Terme Dolomiti</span>
+          <span class="chk-p">מ־44 € · מומלץ</span>
+          <span class="chk-d">הזמנה ב־<a href="https://www.qcterme.com/book">qcterme.com/book</a>, אשראי כערבות והתשלום במקום. פתוח ראשון עד חמישי 09:00 עד 22:00, ואין כניסה מתחת לגיל 14.</span>
+        </span></label>
+    </div>
+    <p class="chk-note">אלפה די סיוזי לא דורש הזמנה כשעולים ברכבל, והתחנה התחתית בכפר שלכם.</p>
+  </section>
+
+  <!-- ========== PEAKS ========== -->
+  <section id="peaks">
+    <div class="sec-head">
+      <p class="sec-num">נושא ראשון</p>
+      <h2>פסגות ורכבלים</h2>
+      <p>ארבעת המקומות שבהם עולים גבוה ומסתכלים. שלושה מהם דורשים כרטיס או אגרה.</p>
+    </div>
+
+    <article class="place">
       <figure><img src="img/seceda.jpg" alt="קירות האודלה מרכס סצ׳דה" loading="lazy" width="1280" height="854">
         <figcaption>Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Odles_da_Seceda_da_duman_tl_nibl_Gherd%C3%ABina.jpg">CC BY-SA 3.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>סצ׳דה</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>סצ׳דה</h3><span class="tag">מהמפה</span></div>
         <p>הרכס המצולם ביותר בדולומיטים: <em>מדרון עשב מתון שנקטע בבת אחת בקיר אנכי</em>. מלמעלה, בגובה 2500 מטר, מסתכלים ישירות על קבוצת האודלה, בדיוק כמו בתמונה.</p>
         <p>שני רכבלים ברצף מאורטיזיי, ולמעלה הליכה קלה על הרכס, שעה עד שעתיים על שביל רחב.</p>
         <div class="facts"><span>20 דק׳ מסיוזי</span><span><b>74 €</b> הלוך ושוב</span><span>08:30—17:30</span></div>
@@ -213,11 +432,11 @@ a:focus-visible{outline:2px solid var(--glacial);outline-offset:3px;border-radiu
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/alpe-di-siusi.jpg" alt="כרי אלפה די סיוזי מול הסאסולונגו" loading="lazy" width="1280" height="543">
         <figcaption>H. Zell · <a href="https://commons.wikimedia.org/wiki/File:Seiser_Alm_16.jpg">CC BY-SA 3.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>אלפה די סיוזי</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>אלפה די סיוזי</h3><span class="tag">מהמפה</span></div>
         <p>הכר האלפיני הגבוה באירופה, 56 קמ״ר של מרעה מתגלגל עם הסאסולונגו מצד אחד והשלרן מהשני. <em>זה גם המקום הכי קרוב אליכם</em>, התחנה התחתית של הרכבל בכפר שלכם.</p>
         <p>למעלה, בקומפאטש, הליכות שטוחות בין רפתות עץ. מקומפאטש למאלגה סאנון וחזרה זה כשעה, קל מאוד.</p>
         <div class="facts"><span>5 דק׳ מסיוזי</span><span>רכבל <b>08:00—19:00</b></span><span>חניה חינם</span></div>
@@ -225,53 +444,56 @@ a:focus-visible{outline:2px solid var(--glacial);outline-offset:3px;border-radiu
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/tre-cime.jpg" alt="שלושת מגדלי תרה צ׳ימה די לוואדרו" loading="lazy" width="1280" height="854">
         <figcaption>Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg">CC BY-SA 3.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>תרה צ׳ימה די לוואדרו</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>תרה צ׳ימה די לוואדרו</h3><span class="tag">מהמפה</span></div>
         <p>שלושת המגדלים, הצללית שכולם מכירים. <em>הרגע האמיתי הוא ברפוג׳ו לוקאטלי</em>, מול שלושת הקירות הצפוניים בבת אחת.</p>
         <p>מהחניון יוצאת ההקפה הקלאסית וגם המצפה של הקאדיני, ואפשר לעשות את שניהם באותו בוקר.</p>
-        <div class="facts"><span>2:10 מסיוזי</span><span>אגרה <b>40 €</b> לרכב</span><span>חניון 2320 מ׳</span></div>
+        <div class="facts"><span>2:10 מסיוזי</span><span>אגרה <b>40 €</b></span><span>חניון 2320 מ׳</span></div>
         <p class="warn">הזמנה מקוונת חובה. יום ארוך: כארבע וחצי שעות נהיגה ועוד ארבע וחצי על הרגליים.</p>
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/cadini.jpg" alt="מחטי הקאדיני די מיזורינה" loading="lazy" width="1280" height="793">
         <figcaption>kallerna · <a href="https://commons.wikimedia.org/wiki/File:Cadini_di_Misurina_Lavaredo_2.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>קאדיני די מיזורינה</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>קאדיני די מיזורינה</h3><span class="tag">מהמפה</span></div>
         <p>יער של מחטי סלע דקות. <em>המצפה נמצא 20 עד 25 דקות בלבד מחניון תרה צ׳ימה</em> על שביל 117, אז הוא כמעט מתנה.</p>
         <p>באור בוקר המחטים מקבלות קווי מתאר חדים. אחרי הצהריים הן שטוחות.</p>
         <div class="facts"><span>שביל 117</span><span>50 דק׳ הלוך ושוב</span><span>עם תרה צ׳ימה</span></div>
         <p class="warn">המטרים האחרונים אל נקודת התצפית חשופים. אל תתקרבו לקצה.</p>
       </div>
     </article>
+  </section>
 
-  </div>
+  <!-- ========== LAKES ========== -->
+  <section id="lakes">
+    <div class="sec-head">
+      <p class="sec-num">נושא שני</p>
+      <h2>אגמים</h2>
+      <p>שלושה נכנסו למסלול ואחד לא. לכולם יש שעה נכונה ביום, וזה משנה יותר מכל דבר אחר.</p>
+    </div>
 
-  <h2>אגמים</h2>
-  <p class="sub">שלושה נכנסו למסלול ואחד לא. לכולם יש שעה נכונה ביום, וזה משנה יותר מכל דבר אחר.</p>
-  <div class="grid">
-
-    <article class="card">
+    <article class="place">
       <figure><img src="img/braies.jpg" alt="לאגו די בראייס ובית הסירות" loading="lazy" width="1280" height="765">
         <figcaption>kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_7.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>לאגו די בראייס</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>לאגו די בראייס</h3><span class="tag">מהמפה</span></div>
         <p>האגם המפורסם בדולומיטים, עם בית הסירות בקצה הצפוני והקירות של רכס בראייס מאחור. הקפה שטוחה לגמרי סביב המים.</p>
         <p><em>ההשתקפות עובדת רק לפני שהרוח מתעוררת.</em> אחרי עשר בבוקר הוא אגם יפה ולא יותר, אז מוקדם זה כל העניין.</p>
         <div class="facts"><span>1:40 מסיוזי</span><span>3.5 ק״מ</span><span>שעה עד 1:15</span></div>
-        <p class="warn">כניסה בין 09:00 ל־16:00 רק עם אישור מעבר מוזמן. הגעה לפני 09:00 מותרת אבל לא מבטיחה מקום חניה.</p>
+        <p class="warn">כניסה בין 09:00 ל־16:00 רק עם אישור מעבר. הגעה לפני 09:00 מותרת אבל לא מבטיחה מקום חניה.</p>
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/carezza.jpg" alt="אגם קארצה מול רכס הלאטמאר" loading="lazy" width="1280" height="854">
         <figcaption>Ximonic, Simo Räsänen · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>אגם קארצה</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>אגם קארצה</h3><span class="tag">מהמפה</span></div>
         <p>אגם קטן וטורקיז מתחת לרכס הלאטמאר המשונן, מוקף אשוחים. הקפה על טיילת עץ, עשרים דקות בסך הכל.</p>
         <p><em>הוא היחיד ברשימה שנראה טוב יותר ביום מעונן.</em> באור שטוח הצבע של המים בולט, ובשמש חזקה הוא נשטף.</p>
         <div class="facts"><span>45 דק׳ מסיוזי</span><span>15—20 דק׳</span><span>ללא עלייה</span></div>
@@ -279,236 +501,308 @@ a:focus-visible{outline:2px solid var(--glacial);outline-offset:3px;border-radiu
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/misurina.jpg" alt="אגם מיזורינה עם תרה צ׳ימה ברקע" loading="lazy" width="1280" height="854">
         <figcaption>kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Misurina_Tre_Cime_di_Lavaredo_1.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>מיזורינה ואנטורנו</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>מיזורינה ואנטורנו</h3><span class="tag">מהמפה</span></div>
         <p>שני אגמים שנמצאים בדיוק על הכביש בדרך מתרה צ׳ימה, ולכן <em>הם לא עולים לכם שום זמן</em>. מיזורינה הוא הגדול, עם המלון ההיסטורי על הגדה.</p>
         <p>אנטורנו קטן יותר, ממש מתחת לשער האגרה, ומהגדה שלו רואים את הקאדיני משתקפים.</p>
         <div class="facts"><span>על הדרך</span><span>עצירה של 20 דק׳</span><span>אחרי תרה צ׳ימה</span></div>
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/sorapis.jpg" alt="לאגו די סוראפיס והמגדל דיטו די דיו" loading="lazy" width="1280" height="854">
         <figcaption>kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Sorapis_2.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>לאגו די סוראפיס</h3><span class="pin">לא נכנס</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>לאגו די סוראפיס</h3><span class="tag out">לא נכנס</span></div>
         <p>אגם חלבי־טורקיז בקירק סגור, עם מגדל הסלע דיטו די דיו, אצבע האל, עולה ישר מהמים. אי אפשר לראות אותו משום כביש.</p>
         <p><em>המסלול חוצה מדף סלע חשוף עם כבלי פלדה ותהום מצד אחד.</em> זה לא טיפוס טכני, אבל זה גם לא טרק קל.</p>
         <div class="facts"><span>2:00 מסיוזי</span><span>12.5 ק״מ</span><span>4.5—5.5 שעות</span></div>
         <p class="warn">עם הנהיגה זה יום של אחת עשרה שעות. אם בכל זאת תרצו, הוא מחליף את יום תרה צ׳ימה ולא מתווסף אליו.</p>
       </div>
     </article>
+  </section>
 
-  </div>
+  <!-- ========== TRAILS ========== -->
+  <section id="trails">
+    <div class="sec-head">
+      <p class="sec-num">נושא שלישי</p>
+      <h2>מסלולי הליכה</h2>
+      <p>מסודרים מהקל לחשוף. אל תעשו שניים מהכבדים ברצף.</p>
+    </div>
+    <div class="trails">
+      <div class="tr"><div class="tr-top"><span class="tr-n">כרי אלפה די סיוזי, קומפאטש למאלגה סאנון</span><span class="grade">קל מאוד</span></div>
+        <p>דרך רחבה ושטוחה בין רפתות עץ, מול הסאסולונגו. הכי קרוב לבית והכי פשוט להכניס לחצי יום.</p>
+        <div class="facts"><span>כשעה</span><span>שטוח</span><span>רכבל מסיוזי</span></div></div>
+      <div class="tr"><div class="tr-top"><span class="tr-n">הקפת לאגו די בראייס</span><span class="grade">קל</span></div>
+        <p>מעגלי סביב האגם מתחת לקירות. נגד כיוון השעון מגיעים לצד המרוחק בזמן שהמים עוד רגועים.</p>
+        <div class="facts"><span>3.5 ק״מ</span><span>שעה עד 1:15</span><span>ללא עלייה</span></div></div>
+      <div class="tr"><div class="tr-top"><span class="tr-n">רכס סצ׳דה מהתחנה העליונה</span><span class="grade">קל</span></div>
+        <p>קדימה לאורך הרכס וחזרה, שביל רחב בלי טיפוס אמיתי. מי שרוצה יותר יורד ברגל לרפוג׳ו פירנצה ומשם לרכבל קול רייזר.</p>
+        <div class="facts"><span>1—2 שעות</span><span>מינימום עלייה</span><span>2500 מ׳</span></div></div>
+      <div class="tr"><div class="tr-top"><span class="tr-n">מצפה קאדיני, שביל 117</span><span class="grade mid">קצר אך חשוף</span></div>
+        <p>קצר מאוד ומשתלם מאוד, אבל המטרים האחרונים אל נקודת הצילום חשופים ובלי מעקה.</p>
+        <div class="facts"><span>50 דק׳ הלוך ושוב</span><span>קצה חשוף</span></div></div>
+      <div class="tr"><div class="tr-top"><span class="tr-n">שביל אדולף מונקל מתחת לאודלה</span><span class="grade mid">מתון</span></div>
+        <p>מזאנסר אלם, ישר מתחת לקיר המשונן. הגרסה המלאה כשלוש שעות, אבל עד מאלגה גייזלר וחזרה זה שעה וחצי ונותן את אותו קיר.</p>
+        <div class="facts"><span>1.5 שעות בקצרה</span><span>3 שעות במלאה</span><span>עלייה מתונה</span></div></div>
+      <div class="tr"><div class="tr-top"><span class="tr-n">הקפת תרה צ׳ימה די לוואדרו</span><span class="grade mid">מתון וארוך</span></div>
+        <p>נגד כיוון השעון: רפוג׳ו לוואדרו, פורצ׳לה לוואדרו, רפוג׳ו לוקאטלי מול הקירות הצפוניים, וחזרה דרך מאלגה לנגאלם. שבילים רחבים וברורים, בלי קטעים חשופים.</p>
+        <div class="facts"><span>כ־10 ק״מ</span><span>3.5—4 שעות</span><span>כ־350 מ׳ עלייה</span></div></div>
+      <div class="tr"><div class="tr-top"><span class="tr-n">לאגו די סוראפיס, שביל 215</span><span class="grade hard">חשוף, לא נכנס</span></div>
+        <p>מדף הצ׳נג׳ה דל בנקו עם כבלי פלדה קבועים ותהום. בעונה נוצרים שם תורים של רבע שעה על הכבלים.</p>
+        <div class="facts"><span>12.5 ק״מ</span><span>4.5—5.5 שעות</span><span>כ־630 מ׳ עלייה</span></div></div>
+    </div>
+  </section>
 
-  <h2>מסלולי הליכה</h2>
-  <p class="sub">מסודרים מהקל לחשוף. אל תעשו שניים מהכבדים ברצף.</p>
-  <div class="trails">
-    <div class="tr"><span class="tr-n">כרי אלפה די סיוזי, קומפאטש למאלגה סאנון</span><span class="tr-g">קל מאוד</span>
-      <p class="tr-d">דרך רחבה ושטוחה בין רפתות עץ, מול הסאסולונגו. הכי קרוב לבית והכי פשוט להכניס לחצי יום.</p>
-      <span class="tr-f"><span>כשעה</span><span>שטוח</span><span>רכבל מסיוזי</span></span></div>
-    <div class="tr"><span class="tr-n">הקפת לאגו די בראייס</span><span class="tr-g">קל</span>
-      <p class="tr-d">מעגלי סביב האגם מתחת לקירות. נגד כיוון השעון מגיעים לצד המרוחק בזמן שהמים עוד רגועים.</p>
-      <span class="tr-f"><span>3.5 ק״מ</span><span>שעה עד 1:15</span><span>ללא עלייה</span></span></div>
-    <div class="tr"><span class="tr-n">רכס סצ׳דה מהתחנה העליונה</span><span class="tr-g">קל</span>
-      <p class="tr-d">קדימה לאורך הרכס וחזרה, שביל רחב בלי טיפוס אמיתי. מי שרוצה יותר יורד ברגל לרפוג׳ו פירנצה ומשם לרכבל קול רייזר.</p>
-      <span class="tr-f"><span>1—2 שעות</span><span>מינימום עלייה</span><span>2500 מ׳</span></span></div>
-    <div class="tr"><span class="tr-n">מצפה קאדיני, שביל 117</span><span class="tr-g mid">קצר אך חשוף</span>
-      <p class="tr-d">קצר מאוד ומשתלם מאוד, אבל המטרים האחרונים אל נקודת הצילום חשופים ובלי מעקה.</p>
-      <span class="tr-f"><span>50 דק׳ הלוך ושוב</span><span>קצה חשוף</span></span></div>
-    <div class="tr"><span class="tr-n">שביל אדולף מונקל מתחת לאודלה</span><span class="tr-g mid">מתון</span>
-      <p class="tr-d">מזאנסר אלם, ישר מתחת לקיר המשונן. הגרסה המלאה כשלוש שעות, אבל עד מאלגה גייזלר וחזרה זה שעה וחצי ונותן את אותו קיר.</p>
-      <span class="tr-f"><span>1.5 שעות בקצרה</span><span>3 שעות במלאה</span><span>עלייה מתונה</span></span></div>
-    <div class="tr"><span class="tr-n">הקפת תרה צ׳ימה די לוואדרו</span><span class="tr-g mid">מתון וארוך</span>
-      <p class="tr-d">נגד כיוון השעון: רפוג׳ו לוואדרו, פורצ׳לה לוואדרו, רפוג׳ו לוקאטלי מול הקירות הצפוניים, וחזרה דרך מאלגה לנגאלם. שבילים רחבים וברורים, בלי קטעים חשופים.</p>
-      <span class="tr-f"><span>כ־10 ק״מ</span><span>3.5—4 שעות</span><span>כ־350 מ׳ עלייה</span></span></div>
-    <div class="tr"><span class="tr-n">לאגו די סוראפיס, שביל 215</span><span class="tr-g hard">חשוף, לא נכנס</span>
-      <p class="tr-d">מדף הצ׳נג׳ה דל בנקו עם כבלי פלדה קבועים ותהום. בעונה נוצרים שם תורים של רבע שעה על הכבלים.</p>
-      <span class="tr-f"><span>12.5 ק״מ</span><span>4.5—5.5 שעות</span><span>כ־630 מ׳ עלייה</span></span></div>
-  </div>
+  <!-- ========== SUNSETS ========== -->
+  <section id="sunsets">
+    <div class="sec-head">
+      <p class="sec-num">נושא רביעי</p>
+      <h2>שקיעות</h2>
+      <p>הזוהר הוורוד על קירות הדולומיט נקרא כאן אנרוזדירה, והוא מגיע דווקא אחרי שהשמש כבר ירדה מאחורי הרכס. אל תלכו מוקדם מדי.</p>
+    </div>
 
-  <h2>שקיעות</h2>
-  <p class="sub">הזוהר הוורוד על קירות הדולומיט נקרא כאן אנרוזדירה, והוא מגיע דווקא אחרי שהשמש כבר ירדה מאחורי הרכס. אל תלכו מוקדם מדי.</p>
-  <div class="grid">
-
-    <article class="card">
+    <article class="place">
       <figure><img src="img/sassolungo.jpg" alt="מסיב הסאסולונגו ממעבר סלה" loading="lazy" width="1280" height="877">
         <figcaption>Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Langkofel_group_from_the_Sella_pass_2016.jpg">CC BY-SA 3.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>אלפה די סיוזי</h3><span class="pin">הכי נגיש</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>אלפה די סיוזי</h3><span class="tag add">הכי נגיש</span></div>
         <p>חמש עשרה דקות מהמיטה, והקירות של הסאסולונגו והשלרן עומדים משני הצדדים. <em>זאת השקיעה הקלה ביותר להשיג בטיול הזה.</em></p>
         <div class="facts"><span>הכביש נפתח <b>17:00</b></span><span>שקיעה ~19:40</span></div>
         <p class="warn set">חובה לעלות ברכב, לא ברכבל. הרכבל נסגר ב־19:00, לפני השקיעה, ואין דרך אחרת לרדת. הירידה ברכב מותרת בכל שעה.</p>
       </div>
     </article>
 
-    <article class="card">
-      <figure><img src="img/funes.jpg" alt="כנסיית סנטה מדלנה בוואל די פונס מול קירות האודלה" loading="lazy" width="1280" height="854">
+    <article class="place">
+      <figure><img src="img/funes.jpg" alt="כנסיית סנטה מדלנה מול קירות האודלה" loading="lazy" width="1280" height="854">
         <figcaption>Falk2 · <a href="https://commons.wikimedia.org/wiki/File:I11_268_St._Magdalena.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>סנטה מדלנה, ואל די פונס</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>סנטה מדלנה, ואל די פונס</h3><span class="tag">מהמפה</span></div>
         <p>הכנסייה הקטנה עם קיר האודלה מאחור. הסיבה שהתמונה הזאת מפורסמת היא גיאוגרפית: <em>הקירות פונים מערבה ולכן מקבלים את האור האחרון ישירות</em>.</p>
         <div class="facts"><span>40 דק׳ מסיוזי</span><span>שקיעה ~19:40</span></div>
         <p class="warn">ממאי 2026 מחסום חוסם את הכביש לכנסייה, לתושבים ולאורחי מלונות בלבד. חונים בחניון המיועד ועולים ברגל.</p>
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/passo-gardena.jpg" alt="מסיב הסלה ממעבר גרדנה" loading="lazy" width="1280" height="613">
         <figcaption>Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Frea_pass_Sella_group_Dolomites.jpg">CC BY-SA 3.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>מעבר גרדנה</h3><span class="pin">מהמפה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>מעבר גרדנה</h3><span class="tag">מהמפה</span></div>
         <p>נסיעה נופית טהורה בלי הליכה: אורטיזיי, סלווה, ועלייה בסרפנטינות אל מול מסיב הסלה. <em>אפשר לעשות את כולה מהאוטו.</em></p>
         <div class="facts"><span>50 דק׳ מסיוזי</span><span>1.5 שעות הלוך ושוב</span><span>ללא הליכה</span></div>
       </div>
     </article>
+  </section>
 
-  </div>
+  <!-- ========== TOWNS ========== -->
+  <section id="towns">
+    <div class="sec-head">
+      <p class="sec-num">נושא חמישי</p>
+      <h2>כפרים, ספא ומוזיאון</h2>
+      <p>מה שעושים כשלא הולכים. שניים מאלה נועדו במיוחד ליום שהתחזית שלו גרועה.</p>
+    </div>
 
-  <h2>כפרים, ספא ומוזיאון</h2>
-  <p class="sub">מה שעושים כשלא הולכים. שניים מאלה נועדו במיוחד ליום שהתחזית שלו גרועה.</p>
-  <div class="grid">
-
-    <article class="card">
-      <figure><img src="img/siusi.jpg" alt="סיוזי אלו שלרן מתחת לרכס השלרן" loading="lazy" width="1280" height="843">
-        <figcaption>Syrio · <a href="https://commons.wikimedia.org/wiki/File:Siusi_allo_Sciliar.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>סיוזי וקסטלרוטו</h3><span class="pin add">הוספה</span></div>
-        <p>הכפר שאתם ישנים בו, מתחת לקיר השלרן. <em>קסטלרוטו ממש ליד</em>, זה הכפר שהאזור נקרא על שמו, עם מגדל פעמונים ומרכז היסטורי קטן.</p>
-        <p>רבע שעה מספיקה, וזה משתלב טוב בבוקר האחרון לפני הנסיעה מערבה.</p>
-        <div class="facts"><span>קסטלרוטו 8 דק׳</span><span>רבע שעה</span></div>
+    <article class="place">
+      <figure><img src="img/carezza.jpg" alt="ואל די פאסה ורכס הלאטמאר, אזור הספא" loading="lazy" width="1280" height="854">
+        <figcaption>Ximonic, Simo Räsänen · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg">CC BY-SA 4.0</a></figcaption></figure>
+      <div class="place-body">
+        <div class="place-top"><h3>QC Terme Dolomiti</h3><span class="tag">מהמפה</span></div>
+        <p>ספא בפוצה די פאסה, סטרדה די באניס 21, עם בריכות חוץ מחוממות מול ההרים. הכניסה כוללת חלוק, מגבת, כפכפים ואפריטיף ערב.</p>
+        <p><em>גשם קר על הפנים והגוף בתוך 38 מעלות עדיף על יום שמשי כאן.</em> זה בדיוק המקום ליום רביעי, וקארצה על אותו כביש בדרך.</p>
+        <div class="facts"><span>1:00 מסיוזי</span><span>צהריים <b>מ־44 €</b></span><span>5 שעות מ־58 €</span></div>
+        <p class="warn cool">פתוח ראשון עד חמישי 09:00 עד 22:00. אין כניסה מתחת לגיל 14.</p>
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
       <figure><img src="img/ortisei.jpg" alt="אורטיזיי בוואל גרדנה" loading="lazy" width="1280" height="1993">
         <figcaption>Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Da_Rusina_ju_a_Urtijei.jpg">CC BY-SA 3.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>אורטיזיי</h3><span class="pin add">הוספה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>אורטיזיי</h3><span class="tag add">הוספה</span></div>
         <p>תחנת הבסיס של סצ׳דה, והמרכז שלה מדרחוב מהיפים בוואל גרדנה. <em>מלא סדנאות גילוף בעץ</em>, שזאת המסורת המקומית האמיתית של העמק.</p>
         <p>משתלב מצוין אחרי ירידה מסצ׳דה, ואפשר לאכול שם צהריים.</p>
         <div class="facts"><span>20 דק׳ מסיוזי</span><span>שעה עד שעתיים</span></div>
       </div>
     </article>
 
-    <article class="card">
+    <article class="place">
+      <figure><img src="img/siusi.jpg" alt="סיוזי מתחת לרכס השלרן" loading="lazy" width="1280" height="843">
+        <figcaption>Syrio · <a href="https://commons.wikimedia.org/wiki/File:Siusi_allo_Sciliar.jpg">CC BY-SA 4.0</a></figcaption></figure>
+      <div class="place-body">
+        <div class="place-top"><h3>סיוזי וקסטלרוטו</h3><span class="tag add">הוספה</span></div>
+        <p>הכפר שאתם ישנים בו, מתחת לקיר השלרן. <em>קסטלרוטו ממש ליד</em>, זה הכפר שהאזור נקרא על שמו, עם מגדל פעמונים ומרכז היסטורי קטן.</p>
+        <p>רבע שעה מספיקה, וזה משתלב טוב בבוקר האחרון לפני הנסיעה מערבה.</p>
+        <div class="facts"><span>קסטלרוטו 8 דק׳</span><span>רבע שעה</span></div>
+      </div>
+    </article>
+
+    <article class="place">
       <figure><img src="img/bolzano.jpg" alt="כיכר וולטר בבולצאנו" loading="lazy" width="1280" height="960">
         <figcaption>Palickap · <a href="https://commons.wikimedia.org/wiki/File:Bolzano,_Waltherplatz_(1).JPG">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>בולצאנו ואֶצי</h3><span class="pin add">הוספה</span></div>
+      <div class="place-body">
+        <div class="place-top"><h3>בולצאנו ואֶצי</h3><span class="tag add">הוספה</span></div>
         <p>25 דקות מהבית. מוזיאון הארכיאולוגיה מחזיק את <em>אֶצי, איש הקרח בן 5,300 השנים שנמצא בקרחון ב־1991</em>, המומיה הטבעית העתיקה באירופה.</p>
         <p>סביבו העיר העתיקה עם הקשתות ושוק פיאצה ארבה. חלופה טובה לספא ביום גשום.</p>
         <div class="facts"><span>25 דק׳ מסיוזי</span><span>שעתיים במוזיאון</span></div>
       </div>
     </article>
+  </section>
 
-    <article class="card">
-      <figure><img src="img/carezza.jpg" alt="ואל די פאסה ורכס הלאטמאר, האזור של הספא" loading="lazy" width="1280" height="854">
-        <figcaption>Ximonic, Simo Räsänen · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg">CC BY-SA 4.0</a></figcaption></figure>
-      <div class="card-body">
-        <div class="card-top"><h3>QC Terme Dolomiti</h3><span class="pin">מהמפה</span></div>
-        <p>ספא בפוצה די פאסה, סטרדה די באניס 21, עם בריכות חוץ מחוממות מול ההרים. הכניסה כוללת חלוק, מגבת, כפכפים ואפריטיף ערב.</p>
-        <p><em>גשם קר על הפנים והגוף בתוך 38 מעלות עדיף על יום שמשי כאן.</em> זה בדיוק המקום ליום רביעי, וקארצה נמצא על אותו כביש בדרך.</p>
-        <div class="facts"><span>1:00 מסיוזי</span><span>צהריים <b>מ־44 €</b></span><span>5 שעות מ־58 €</span></div>
-        <p class="warn cool">פתוח ראשון עד חמישי 09:00 עד 22:00. אין כניסה מתחת לגיל 14.</p>
+  <!-- ========== WEATHER ========== -->
+  <section id="weather">
+    <div class="sec-head">
+      <p class="sec-num">מה קובע את הסדר</p>
+      <h2>מזג האוויר</h2>
+      <p>מתוך שירות מזג האוויר של חבל בולצאנו, בעדכון של 5.9.2026 בשעה 10:55. גללו הצידה.</p>
+    </div>
+    <div class="wx">
+      <div class="wx-day"><span class="wx-d">ראשון 6.9</span><h3 class="wx-h">שמש מלאה</h3>
+        <span class="wx-t">9°/18° בהרים · אמינות 80%</span>
+        <p>״שמש בשפע, שמיים בהירים ברוב שעות היום״. היום היחיד בלי אזכור סופות.</p>
+        <span class="wx-plan">סצ׳דה בבוקר, שקיעה באלפה די סיוזי</span></div>
+      <div class="wx-day mix"><span class="wx-d">שני 7.9</span><h3 class="wx-h">בוקר שמשי</h3>
+        <span class="wx-t">10°/17° בהרים · אמינות 70%</span>
+        <p>״בבוקר תזרח השמש, עם כמה סופות רעמים שיתפתחו אחר הצהריים״.</p>
+        <span class="wx-plan">תרה צ׳ימה, יציאה ב־05:45</span></div>
+      <div class="wx-day mix"><span class="wx-d">שלישי 8.9</span><h3 class="wx-h">שמשי עם רעמים</h3>
+        <span class="wx-t">9°/17° בהרים · אמינות 70%</span>
+        <p>״שמשי, אם כי סופות רעמים בודדות אפשריות שוב מאחר הצהריים״.</p>
+        <span class="wx-plan">בראייס מוקדם, פונס בשקיעה</span></div>
+      <div class="wx-day wet"><span class="wx-d">רביעי 9.9</span><h3 class="wx-h">חזית קרה</h3>
+        <span class="wx-t">10°/17° בהרים · אמינות 70%</span>
+        <p>״חזית קרה, גשמים נרחבים והטמפרטורות יירדו באופן ניכר״.</p>
+        <span class="wx-plan">קארצה ואז ספא, או בולצאנו</span></div>
+      <div class="wx-day"><span class="wx-d">חמישי 10.9</span><h3 class="wx-h">משתפר</h3>
+        <span class="wx-t">8°/15° בהרים · אמינות 70%</span>
+        <p>״מזג האוויר צפוי להשתפר שוב, עם טמפרטורות מתונות״. יש לכם בוקר אחד.</p>
+        <span class="wx-plan">אלפה די סיוזי ברכבל, ואז מערבה</span></div>
+    </div>
+  </section>
+
+  <!-- ========== NUMBERS ========== -->
+  <section id="numbers">
+    <div class="sec-head">
+      <p class="sec-num">להחזיק ביד</p>
+      <h2>מספרים</h2>
+      <p>זמני נהיגה מסיוזי, בערך, בלי פקקים.</p>
+    </div>
+    <div class="ref">
+      <section><h3>מרחקים מהבית</h3><dl>
+        <dt>רכבל אלפה די סיוזי</dt><dd>5 דק׳</dd>
+        <dt>קסטלרוטו</dt><dd>8 דק׳</dd>
+        <dt>אורטיזיי</dt><dd>20 דק׳</dd>
+        <dt>בולצאנו</dt><dd>25 דק׳</dd>
+        <dt>ואל די פונס</dt><dd>40 דק׳</dd>
+        <dt>אגם קארצה</dt><dd>45 דק׳</dd>
+        <dt>מעבר גרדנה</dt><dd>50 דק׳</dd>
+        <dt>QC Terme</dt><dd>1:00</dd>
+        <dt>לאגו די בראייס</dt><dd>1:40</dd>
+        <dt>שער תרה צ׳ימה</dt><dd>2:10</dd>
+      </dl></section>
+      <section><h3>אור</h3><dl>
+        <dt>זריחה, 6—10.9</dt><dd>06:40—06:45</dd>
+        <dt>שקיעה, ראשון</dt><dd>19:44</dd>
+        <dt>שקיעה, שני</dt><dd>19:42</dd>
+        <dt>שקיעה, שלישי</dt><dd>19:40</dd>
+        <dt>שקיעה, רביעי</dt><dd>19:38</dd>
+        <dt>שקיעה, חמישי</dt><dd>19:36</dd>
+        <dt>שעת הזהב מתחילה</dt><dd>~18:45</dd>
+      </dl></section>
+      <section><h3>חוקים שקל ליפול בהם</h3><dl>
+        <dt>אלפה די סיוזי סגור לרכב</dt><dd>09:00—17:00</dd>
+        <dt>בראייס, מעבר בהזמנה</dt><dd>09:00—16:00</dd>
+        <dt>רכבל סיוזי</dt><dd>08:00—19:00</dd>
+        <dt>רכבל סצ׳דה</dt><dd>08:30—17:30</dd>
+        <dt>חירום באיטליה</dt><dd>112</dd>
+      </dl></section>
+    </div>
+
+    <div class="sec-head"><h2 style="font-size:clamp(24px,6vw,32px)">מה נשאר בחוץ</h2></div>
+    <div class="cut">
+      <div><h3>קורטינה ד׳אמפצו וצ׳ינקווה טורי</h3>
+        <p>שניהם שעתיים מסיוזי, באותו כיוון של תרה צ׳ימה. אתם ישנים במערב הדולומיטים ולכן יש לכם תקציב של יום מזרחי אחד, וכבר הוצאתם אותו. אם תוותרו על תרה צ׳ימה, צ׳ינקווה טורי בשקיעה מרפוג׳ו נובולאו הוא מהטובים באזור.</p></div>
+      <div><h3>מלפנסה רחוקה, וזה משפיע על הקצוות</h3>
+        <p>מהשדה עד סיוזי זה כארבע וחצי עד חמש שעות. זאת הסיבה שהיום הראשון בנוי קרוב לבית והיום האחרון נגמר בצהריים.</p></div>
+    </div>
+
+    <details class="credits">
+      <summary>קרדיטים לתמונות</summary>
+      <div class="credit-list">
+        <div>סצ׳דה · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Odles_da_Seceda_da_duman_tl_nibl_Gherd%C3%ABina.jpg">CC BY-SA 3.0</a></div>
+        <div>אלפה די סיוזי · H. Zell · <a href="https://commons.wikimedia.org/wiki/File:Seiser_Alm_16.jpg">CC BY-SA 3.0</a></div>
+        <div>תרה צ׳ימה · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg">CC BY-SA 3.0</a></div>
+        <div>קאדיני · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Cadini_di_Misurina_Lavaredo_2.jpg">CC BY-SA 4.0</a></div>
+        <div>בראייס · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_7.jpg">CC BY-SA 4.0</a></div>
+        <div>קארצה · Ximonic, Simo Räsänen · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg">CC BY-SA 4.0</a></div>
+        <div>מיזורינה · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Misurina_Tre_Cime_di_Lavaredo_1.jpg">CC BY-SA 4.0</a></div>
+        <div>סוראפיס · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Sorapis_2.jpg">CC BY-SA 4.0</a></div>
+        <div>סנטה מדלנה · Falk2 · <a href="https://commons.wikimedia.org/wiki/File:I11_268_St._Magdalena.jpg">CC BY-SA 4.0</a></div>
+        <div>מעבר גרדנה · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Frea_pass_Sella_group_Dolomites.jpg">CC BY-SA 3.0</a></div>
+        <div>אורטיזיי · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Da_Rusina_ju_a_Urtijei.jpg">CC BY-SA 3.0</a></div>
+        <div>סיוזי · Syrio · <a href="https://commons.wikimedia.org/wiki/File:Siusi_allo_Sciliar.jpg">CC BY-SA 4.0</a></div>
+        <div>בולצאנו · Palickap · <a href="https://commons.wikimedia.org/wiki/File:Bolzano,_Waltherplatz_(1).JPG">CC BY-SA 4.0</a></div>
+        <div>סאסולונגו · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Langkofel_group_from_the_Sella_pass_2016.jpg">CC BY-SA 3.0</a></div>
       </div>
-    </article>
+    </details>
 
-  </div>
+    <p class="foot">
+      התחזיות משירות מזג האוויר של החבל האוטונומי בולצאנו, ורמות האמינות הן אלה שהם עצמם מפרסמים. בהרים זה משתנה, אז תסתכלו שוב כל בוקר ב־<a href="https://weather.province.bz.it/en/south-tyrol-weather">weather.province.bz.it</a>. שעות הזריחה והשקיעה מחושבות לבולצאנו, ובעמקים עמוקים השמש נעלמת מאחורי הרכס מוקדם יותר, אבל הזוהר על הקירות מגיע דווקא אחרי שהיא יורדת.
+    </p>
+  </section>
 
-  <h2>מזג האוויר, ומה לעשות מתי</h2>
-  <p class="sub">מתוך שירות מזג האוויר של חבל בולצאנו, בעדכון של 5.9.2026 בשעה 10:55. זה מה שקובע את הסדר.</p>
-  <div class="wx-rail">
-    <div class="wx-day"><span class="wx-d">ראשון 6.9</span><h3 class="wx-h">שמש מלאה</h3>
-      <span class="wx-t">9°/18° בהרים · אמינות 80%</span>
-      <p class="wx-p">״שמש בשפע, שמיים בהירים ברוב שעות היום״. היום היחיד בלי אזכור סופות.</p>
-      <span class="wx-plan">סצ׳דה בבוקר, שקיעה באלפה די סיוזי</span></div>
-    <div class="wx-day mix"><span class="wx-d">שני 7.9</span><h3 class="wx-h">בוקר שמשי</h3>
-      <span class="wx-t">10°/17° בהרים · אמינות 70%</span>
-      <p class="wx-p">״בבוקר תזרח השמש, עם כמה סופות רעמים שיתפתחו אחר הצהריים״.</p>
-      <span class="wx-plan">תרה צ׳ימה, יציאה ב־05:45</span></div>
-    <div class="wx-day mix"><span class="wx-d">שלישי 8.9</span><h3 class="wx-h">שמשי עם רעמים</h3>
-      <span class="wx-t">9°/17° בהרים · אמינות 70%</span>
-      <p class="wx-p">״שמשי, אם כי סופות רעמים בודדות אפשריות שוב מאחר הצהריים״.</p>
-      <span class="wx-plan">בראייס מוקדם, פונס בשקיעה</span></div>
-    <div class="wx-day wet"><span class="wx-d">רביעי 9.9</span><h3 class="wx-h">חזית קרה</h3>
-      <span class="wx-t">10°/17° בהרים · אמינות 70%</span>
-      <p class="wx-p">״חזית קרה, גשמים נרחבים והטמפרטורות יירדו באופן ניכר״.</p>
-      <span class="wx-plan">קארצה ואז ספא, או בולצאנו</span></div>
-    <div class="wx-day"><span class="wx-d">חמישי 10.9</span><h3 class="wx-h">משתפר</h3>
-      <span class="wx-t">8°/15° בהרים · אמינות 70%</span>
-      <p class="wx-p">״מזג האוויר צפוי להשתפר שוב, עם טמפרטורות מתונות״. יש לכם בוקר אחד.</p>
-      <span class="wx-plan">אלפה די סיוזי ברכבל, ואז מערבה</span></div>
-  </div>
+</main>
 
-  <h2>מה נשאר בחוץ</h2>
-  <p class="sub">שני דברים לא נכנסו לשום נושא, וזה מכוון.</p>
-  <div class="cut">
-    <div><h3>קורטינה ד׳אמפצו וצ׳ינקווה טורי</h3>
-      <p>שניהם שעתיים מסיוזי, באותו כיוון של תרה צ׳ימה. אתם ישנים במערב הדולומיטים ולכן יש לכם תקציב של יום מזרחי אחד, וכבר הוצאתם אותו. אם תוותרו על תרה צ׳ימה, צ׳ינקווה טורי בשקיעה מרפוג׳ו נובולאו הוא מהטובים באזור.</p></div>
-    <div><h3>מלפנסה רחוקה, וזה משפיע על הקצוות</h3>
-      <p>מהשדה עד סיוזי זה כארבע וחצי עד חמש שעות. זאת הסיבה שהיום הראשון בנוי קרוב לבית והיום האחרון נגמר בצהריים.</p></div>
-  </div>
+<button class="top" id="top" aria-label="חזרה לראש העמוד">↑</button>
 
-  <h2>מספרים שכדאי שיהיו ביד</h2>
-  <p class="sub">זמני נהיגה מסיוזי, בערך, בלי פקקים.</p>
-  <div class="ref">
-    <section><h3>מרחקים מהבית</h3><dl>
-      <dt>רכבל אלפה די סיוזי</dt><dd>5 דק׳</dd>
-      <dt>קסטלרוטו</dt><dd>8 דק׳</dd>
-      <dt>אורטיזיי</dt><dd>20 דק׳</dd>
-      <dt>בולצאנו</dt><dd>25 דק׳</dd>
-      <dt>ואל די פונס</dt><dd>40 דק׳</dd>
-      <dt>אגם קארצה</dt><dd>45 דק׳</dd>
-      <dt>מעבר גרדנה</dt><dd>50 דק׳</dd>
-      <dt>QC Terme</dt><dd>1:00</dd>
-      <dt>לאגו די בראייס</dt><dd>1:40</dd>
-      <dt>שער תרה צ׳ימה</dt><dd>2:10</dd>
-    </dl></section>
-    <section><h3>אור</h3><dl>
-      <dt>זריחה, 6 עד 10.9</dt><dd>06:40—06:45</dd>
-      <dt>שקיעה, ראשון</dt><dd>19:44</dd>
-      <dt>שקיעה, שני</dt><dd>19:42</dd>
-      <dt>שקיעה, שלישי</dt><dd>19:40</dd>
-      <dt>שקיעה, רביעי</dt><dd>19:38</dd>
-      <dt>שקיעה, חמישי</dt><dd>19:36</dd>
-      <dt>שעת הזהב מתחילה</dt><dd>~18:45</dd>
-    </dl></section>
-    <section><h3>חוקי דרך שקל ליפול בהם</h3><dl>
-      <dt>אלפה די סיוזי, סגור לרכב</dt><dd>09:00—17:00</dd>
-      <dt>בראייס, מעבר בהזמנה</dt><dd>09:00—16:00</dd>
-      <dt>רכבל סיוזי</dt><dd>08:00—19:00</dd>
-      <dt>רכבל סצ׳דה</dt><dd>08:30—17:30</dd>
-      <dt>חירום באיטליה</dt><dd>112</dd>
-    </dl></section>
-  </div>
+<script>
+(function(){
+  "use strict";
 
-  <h2>קרדיטים לתמונות</h2>
-  <p class="sub">כל התמונות מוויקישיתוף, ברישיון Creative Commons שמתיר שימוש עם ייחוס. לחיצה על הרישיון מובילה לדף המקור.</p>
-  <div class="credits">
-    <div>סצ׳דה והאודלה · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Odles_da_Seceda_da_duman_tl_nibl_Gherd%C3%ABina.jpg">CC BY-SA 3.0</a></div>
-    <div>אלפה די סיוזי · H. Zell · <a href="https://commons.wikimedia.org/wiki/File:Seiser_Alm_16.jpg">CC BY-SA 3.0</a></div>
-    <div>תרה צ׳ימה · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg">CC BY-SA 3.0</a></div>
-    <div>קאדיני · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Cadini_di_Misurina_Lavaredo_2.jpg">CC BY-SA 4.0</a></div>
-    <div>לאגו די בראייס · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_7.jpg">CC BY-SA 4.0</a></div>
-    <div>אגם קארצה · Ximonic, Simo Räsänen · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg">CC BY-SA 4.0</a></div>
-    <div>אגם מיזורינה · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Misurina_Tre_Cime_di_Lavaredo_1.jpg">CC BY-SA 4.0</a></div>
-    <div>לאגו די סוראפיס · kallerna · <a href="https://commons.wikimedia.org/wiki/File:Lago_di_Sorapis_2.jpg">CC BY-SA 4.0</a></div>
-    <div>סנטה מדלנה · Falk2 · <a href="https://commons.wikimedia.org/wiki/File:I11_268_St._Magdalena.jpg">CC BY-SA 4.0</a></div>
-    <div>מעבר גרדנה · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Frea_pass_Sella_group_Dolomites.jpg">CC BY-SA 3.0</a></div>
-    <div>אורטיזיי · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Da_Rusina_ju_a_Urtijei.jpg">CC BY-SA 3.0</a></div>
-    <div>סיוזי · Syrio · <a href="https://commons.wikimedia.org/wiki/File:Siusi_allo_Sciliar.jpg">CC BY-SA 4.0</a></div>
-    <div>בולצאנו · Palickap · <a href="https://commons.wikimedia.org/wiki/File:Bolzano,_Waltherplatz_(1).JPG">CC BY-SA 4.0</a></div>
-    <div>סאסולונגו · Wolfgang Moroder · <a href="https://commons.wikimedia.org/wiki/File:Langkofel_group_from_the_Sella_pass_2016.jpg">CC BY-SA 3.0</a></div>
-  </div>
+  // remembered booking ticks
+  var boxes = document.querySelectorAll('.chk input[data-k]');
+  function read(k){ try{ return localStorage.getItem('dolo:'+k)==='1'; }catch(e){ return false; } }
+  function write(k,v){ try{ localStorage.setItem('dolo:'+k, v?'1':'0'); }catch(e){} }
+  Array.prototype.forEach.call(boxes, function(b){
+    if(read(b.dataset.k)) b.checked = true;
+    b.addEventListener('change', function(){ write(b.dataset.k, b.checked); });
+  });
 
-  <p class="foot">
-    התחזיות משירות מזג האוויר של החבל האוטונומי בולצאנו, בעדכון של 5.9.2026 בשעה 10:55, ורמות האמינות הן אלה שהם עצמם מפרסמים. בהרים זה משתנה, אז תסתכלו שוב כל בוקר ב־<a href="https://weather.province.bz.it/en/south-tyrol-weather">weather.province.bz.it</a>. שעות הזריחה והשקיעה מחושבות לבולצאנו, ובעמקים עמוקים השמש נעלמת מאחורי הרכס מוקדם יותר, אבל הזוהר על הקירות מגיע דווקא אחרי שהיא יורדת.
-  </p>
+  // active section in the nav
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var secs  = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var bar   = document.querySelector('.nav-scroll');
+  function sync(){
+    var line = window.scrollY + 130, idx = 0;
+    for (var i=0;i<secs.length;i++){ if(secs[i] && secs[i].offsetTop <= line) idx = i; }
+    links.forEach(function(a,i){
+      var on = i===idx;
+      if(on !== a.classList.contains('on')){
+        a.classList.toggle('on', on);
+        if(on && bar){
+          var l = a.offsetLeft - (bar.clientWidth - a.offsetWidth)/2;
+          bar.scrollTo({left:l, behavior:'smooth'});
+        }
+      }
+    });
+    var t = document.getElementById('top');
+    if(t) t.classList.toggle('show', window.scrollY > 700);
+  }
+  var tick=false;
+  window.addEventListener('scroll', function(){
+    if(tick) return; tick=true;
+    requestAnimationFrame(function(){ sync(); tick=false; });
+  }, {passive:true});
+  window.addEventListener('resize', sync, {passive:true});
+  sync();
 
-</div>
+  document.getElementById('top').addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
 </body>
 </html>
